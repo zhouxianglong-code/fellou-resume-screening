@@ -1,0 +1,10 @@
+import { readFile, mkdir, writeFile, copyFile } from 'node:fs/promises';
+const base = new URL('./', import.meta.url);
+const out = new URL('../recruiter-dist/', base);
+await mkdir(out, { recursive: true });
+const core = (await readFile(new URL('core.mjs', base), 'utf8')).replaceAll('export function ', 'function ');
+const ui = await readFile(new URL('panel.js', base), 'utf8');
+const css = await readFile(new URL('panel.css', base), 'utf8');
+await writeFile(new URL('recruiter.js', out), `(() => {\n'use strict';\n${core}\nconst panelCSS = ${JSON.stringify(css)};\n${ui}\n})();\n`);
+await copyFile(new URL('manifest.json', base), new URL('manifest.json', out));
+console.log('Built recruiter-dist (no external dependencies).');

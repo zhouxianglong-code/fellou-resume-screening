@@ -7,6 +7,14 @@ __pycache__/
 候选人/
 tmp/
 *.zip
+.env
+.env.*
+!.env.example
+node_modules/
+reports/
+data/
+*.pem
+*.key
 
 # Local build scratch
 .skill-build/

@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Boss Helper 招聘复核版",
+  "version": "0.1.0",
+  "description": "在 BOSS 招聘端读取已显示的候选人摘要，核对技能证据并导出人工复核记录。",
+  "content_scripts": [{
+    "matches": ["https://www.zhipin.com/web/chat/*", "https://www.zhipin.com/web/frame/*"],
+    "js": ["recruiter.js"],
+    "run_at": "document_idle",
+    "all_frames": false
+  }]
+}

@@ -1,4 +1,12 @@
-# Fellou/Eazo Resume Screening Skill
+# Fellou/Eazo 三合一工具包
+
+| 功能 | 目录 | 使用前配置 |
+| --- | --- | --- |
+| Gmail 简历筛选 | `fellou-resume-screening/` | 连接自己的 Gmail |
+| BOSS 招聘复核 | `boss-resume-screening/` | 登录 BOSS，手动加载 Chrome 扩展 |
+| 小红书市场调研 | `xhs-business-validator/` | 在本地配置 TikHub Token |
+
+BOSS 现有版本支持已加载摘要的关键词核对、去重和人工标记，不包含全站自动筛选。小红书功能用于商业创意和市场需求验证，不是招聘简历筛选。
 
 这是一个可迁移的 Codex 简历筛选 Skill。它把 Fellou/Eazo 的岗位画像、评分规则、去重习惯和“林明型”候选人偏好沉淀成一个可安装目录，方便下次 Codex 更新、换电脑或给别人使用。
 
@@ -23,7 +31,21 @@ git pull
 bash install.sh
 ```
 
-`install.sh` 会把 `fellou-resume-screening/` 同步到 `${CODEX_HOME:-$HOME/.codex}/skills/fellou-resume-screening`。
+`install.sh` 会把三个 Skill 安装到 `${CODEX_HOME:-$HOME/.codex}/skills/`，再次运行会更新文件并保留额外的本地文件。账号授权和 API 凭证需要每位使用者自行配置。
+
+## BOSS 使用
+
+在 Chrome 打开 `chrome://extensions/`，开启开发者模式，加载仓库里的 `boss-resume-screening/assets/recruiter-dist/`。刷新 BOSS 招聘沟通页面后打开“候选人复核”。详细操作和边界见 [BOSS 说明](boss-resume-screening/assets/recruiter/README.md)。源码、测试和无需 npm 依赖的构建脚本均随包提供，保留原项目 MIT 许可证。
+
+在 Codex 中说：`使用 boss-resume-screening，帮我核对当前 BOSS 候选人的岗位技能证据。`
+
+## 小红书使用
+
+在自己的工作目录中创建 `.env`，按照 `xhs-business-validator/.env.example` 填入自己的 `TIKHUB_TOKEN`。不要将真实密钥提交到 GitHub。
+
+在 Codex 中说：`使用 xhs-business-validator，快速验证我这个商业想法的小红书市场需求。`
+
+小红书 Skill 需要外部 TikHub 数据服务；本仓库不包含账号、Token 或服务额度。报告保存在使用者工作目录的 `reports/`，不参与公开发布。
 
 ## 别人使用前要做什么
 
