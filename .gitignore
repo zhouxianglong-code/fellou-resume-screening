@@ -1,0 +1,13 @@
+.DS_Store
+__pycache__/
+*.pyc
+
+# Local/private screening artifacts
+筛选结果/
+候选人/
+tmp/
+*.zip
+
+# Local build scratch
+.skill-build/
+.skill-update/

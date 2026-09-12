@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fellou AI 简历筛选"
+  short_description: "按 Fellou 全岗位 JD 只读筛选、跨岗匹配并持续校准"
+  default_prompt: "使用 $fellou-resume-screening 从招聘邮箱只读筛选新简历，按最匹配岗位输出证据、分数和人工复核建议。"
