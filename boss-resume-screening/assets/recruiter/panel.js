@@ -55,10 +55,12 @@ if (!document.getElementById('boss-recruiter-review')) {
     if (!visible.length) list.append(el('p', '暂无记录。读取列表或手动添加候选人摘要。', 'hint'));
   }
   function addRow(candidateName, text) {
+    // Deduplicate exact summaries in this page session, not candidate identities.
     if (rows.some(row => row.text === text)) return false;
     rows.push({ id: nextId++, name: candidateName, text, mark: '未复核', note: '' }); return true;
   }
   function documents() {
+    // Cross-origin frames are inaccessible; only traverse readable documents.
     const docs = []; const seen = new Set();
     function visit(doc) { if (seen.has(doc)) return; seen.add(doc); docs.push(doc); for (const frame of doc.querySelectorAll('iframe')) { try { if (frame.contentDocument) visit(frame.contentDocument); } catch {} } }
     visit(document); return docs;

@@ -8,6 +8,14 @@
 
 BOSS 现有版本支持已加载摘要的关键词核对、去重和人工标记，不包含全站自动筛选。小红书功能用于商业创意和市场需求验证，不是招聘简历筛选。
 
+## 各项目功能说明
+
+- [邮箱简历筛选：功能、评分、去重和文件说明](fellou-resume-screening/README.md)
+- [BOSS 招聘复核：按钮、源码和使用边界](boss-resume-screening/README.md)
+- [小红书市场调研：搜索、分析、评分和配置](xhs-business-validator/README.md)
+
+根目录 `install.sh` 负责安装三个 Skill，并覆盖更新包内同名文件、保留目标目录额外文件。它不负责账号授权、Chrome 扩展安装或自动更新；更新需执行 `git pull` 后再运行安装脚本。
+
 这是一个可迁移的 Codex 简历筛选 Skill。它把 Fellou/Eazo 的岗位画像、评分规则、去重习惯和“林明型”候选人偏好沉淀成一个可安装目录，方便下次 Codex 更新、换电脑或给别人使用。
 
 ## 一键安装

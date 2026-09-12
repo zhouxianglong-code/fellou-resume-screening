@@ -4,6 +4,7 @@ export function parseCriteria(value) {
   if (terms.some(x => /年龄|性别|男女|男性|女性|婚育|已婚|未婚|生育|民族|宗教|残疾|户籍|籍贯|星座|血型|颜值|长相|政治面貌|\d+岁/.test(x))) throw new Error('请填写工作技能、项目或行业经验，不使用个人敏感属性作为筛选条件。');
   return [...new Set(terms)];
 }
+// Literal evidence only: a negated mention still needs human interpretation.
 export function matchEvidence(text, criteria) {
   const lines = text.split(/\n|[。！？]/).map(x => x.trim()).filter(Boolean);
   return criteria.map(term => {
@@ -18,10 +19,12 @@ export function matchEvidence(text, criteria) {
 }
 export function csvCell(value) {
   let text = String(value ?? '');
+  // Prevent spreadsheet apps from treating candidate-provided text as formulas.
   if (/^[\s]*[=+@-]/.test(text)) text = "'" + text;
   return '"' + text.replaceAll('"', '""') + '"';
 }
 export function exportCSV(rows, criteria) {
+  // Export every supplied row; the panel's display filter does not limit export.
   const header = ['候选人', '人工标记', '备注', ...criteria];
   return '\uFEFF' + [header, ...rows.map(row => [row.name, row.mark, row.note, ...matchEvidence(row.text, criteria).map(x => x.evidence || '待核实：当前摘要未提及')])].map(row => row.map(csvCell).join(',')).join('\r\n');
 }
